@@ -1,0 +1,36 @@
+<div class="table-responsive">
+    <div class="container ">
+        <div class="alert alert-secondary text-center">
+            <h1 style="color:#000"><strong>All Interns</strong></h1>
+        </div>
+
+
+        <table class="table table-bordered table-responsive" style="margin-top:40px; ">
+            <thead class="bg-dark text-center">
+                <tr class="text-white">
+                    {{!-- <th>id</th> --}}
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Email</th>
+                    <th>Intern ID</th>
+                    <th>Institutions</th>
+
+                </tr>
+            </thead>
+            <tbody class="text-center">
+
+
+                {{#each user}}
+                <tr>
+                    {{!-- <td>{{id}}</td> --}}
+                    <td>{{firstName}}</td>
+                    <td>{{lastName}}</td>
+                    <td>{{email}}</td>
+                    <td>{{internId}}</td>
+                    <td>{{institution}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

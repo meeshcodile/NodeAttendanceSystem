@@ -1,0 +1,57 @@
+<!--=========================start of header================= -->
+
+
+
+<ul class="nav nav-pills">
+    <li class="nav-item m-4">
+      <a class="nav-link" href="/">Home</a>
+    </li>
+    {{#if user }}
+    <li class="nav-item m-4">
+      <a class="nav-link" href="/dashboard">Dashboard</a>
+    </li>
+    <li class="nav-item m-4">
+      <a class="nav-link" href="/logout">Logout</a>
+    </li>
+    {{!-- <li class="nav-item m-4">
+      <a class="nav-link" >{{user.fistName}}</a>
+    </li> --}}
+    {{else}}
+
+    <li class="nav-item m-4">
+      <a class="nav-link" href="/login">Login</a>
+    </li>
+
+
+    <li class="nav-item m-4">
+      <a class="nav-link" href="/user/register">Register</a>
+    </li>
+{{/if}}
+  </ul>
+
+
+  <div class="container">
+    {{#if success_messages}}
+    <div class="alert alert-success alert-dismissible  show mt-2 auto-hide" role="alert">
+      <strong>{{success_messages}}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    {{/if}}
+  
+    {{#if error_messages}}
+    <div class="alert alert-danger alert-dismissible  show mt-2 auto-hide" role="alert">
+      <strong>{{error_messages}}</strong>
+      <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true"></span>
+      </button>
+    </div>
+    {{/if}}
+  
+  </div>
+
+
+
+
+<!-- =======================end of header========================= -->

@@ -1,0 +1,110 @@
+{{!-- cc2
+<div class="col-md-6">
+    <!-- PROFILE INFO -->
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title">ATTENDANCE</strong> <em>{{date}}</em>
+        </div>
+        <div class="card-body">
+            <form action="/user/signIn/{{user._id}}" method="POST">
+
+                <div class="sufee-alert alert with-close alert-dismissible fade show">
+                    <button type="submit" id="btnControl1"
+                        class="btn btn-outline-success btn-lg btn-block location">SIGN IN</button>
+                </div>
+            </form>
+            <form action="/user/signOut/{{user._id}}" method="POST">
+
+                <div class="sufee-alert alert with-close  alert-dismissible fade show">
+                    <button type="submit" id="btnControl2"
+                        class="btn btn-outline-warning btn-lg btn-block location1">SIGN OUT</button>
+
+
+                </div>
+            </form>
+
+
+
+
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="col-md-6">
+    <!-- PROFILE PHOTO-->
+    <div class="card">
+        <div class="card-header">
+            <strong class="card-title mb-3">Profile</strong>
+        </div>
+        <div class="card-body">
+            <div class="mx-auto d-block">
+                <img class=" mx-auto d-block" src="{{user.profilePicture}}" alt="Card image cap">
+
+                <div class="location text-sm-center">
+                </div>
+                <hr>
+
+
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block" data-toggle="modal"
+                    data-target="#smallmodal">UPDATE PROFILE PICTURE</button>
+
+            </div>
+            <hr>
+
+        </div>
+    </div>
+
+</div> --}}
+
+
+
+{{!-- //cc2 --}}
+
+
+<!-- Body -->
+
+<div class="col-sm-8 text-left">
+    <!-- Current date -->
+    <div class="wel">
+        <h1>Welcome</h1>
+        <!-- sign in links -->
+        {{!-- <a href="#" class="btn btn-primary">SignIn Attendance Today</a> --}}
+        <form action="/user/signIn/{{user._id}}" method="POST">
+        
+            <div class="btn btn-success ">
+                <button type="submit" id="btnControl1" class="btn btn-lg" style="color: #000;font-weight:bolder">SignIN Today
+                </button>
+            </div>
+        </form>
+        <form action="/user/signOut/{{user._id}}" method="POST">
+        
+            <div class="btn btn-warning ">
+                <button type="submit" id="btnControl2" class="btn btn-lg" style="color: #000;font-weight:bolder">SignOut Today
+                    </button>
+        
+        
+            </div>
+        </form>
+        {{!-- <div class="signOut"><a href="#" class="btn btn-primary">SignOut Attendance Today</a></div> --}}
+        <p id="date"></p>
+
+        <hr>
+        <p>nHub Foundation is a non-governmental and not-for-profit organization that works to enhance policy advocacy,
+            gender inclusiveness, Technology for all, infrastructure/capacity building as regards Employability and
+            Entrepreneurship, innovation and every aspect of social impact</p>
+        
+
+        <form action="/user/topicUpload/{{user._id}}" method="POST">
+            <h2 class="h3">Add Your project Topic</h2><input type="text" name="projectTopic">
+            <button type="submit">Save</button>
+            
+        </form>
+        <hr>
+    </div>
+</div>
+
+</div>
+</div>
