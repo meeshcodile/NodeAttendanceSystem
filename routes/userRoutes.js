@@ -13,7 +13,7 @@ const path = require('path')
 // const isIntern = auth.isIntern
 
 
-
+// ==================configuring multer=============
 var storage = multer.diskStorage({
     filename: function (req, file, callback) {
         callback(null, file.fieldname + "-" + Date.now());
@@ -27,7 +27,7 @@ var upload = multer({
     }
 })
 
-// Check File Type
+// ======================Check File Type
 function checkFileType(file, cb) {
     // Allowed ext
     const filetypes = /jpeg|jpg|png|pdf/;
@@ -46,7 +46,7 @@ function checkFileType(file, cb) {
 }
 // ===================================================   CLOUDINARY SETUP =====================================
 cloudinary.config({
-    cloud_name: 'dzl4he0xn',
+    cloud_name: process.env.cloud_name,
     api_key: process.env.api_key,
     api_secret: process.env.api_secret
 
@@ -72,6 +72,8 @@ router.route('/logout')
 router.route('/topicUpload/:id')
     .post(isIntern,userController.topicUploadPost)
 
+router.route('/internExeat/:id')
+    .post(isIntern,userController.internExeatPost)
 
 router.route('/uploadImage/:id')
     .post(isIntern,upload.single('profilePic'), function (req, res, next) {

@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const expresshandlebars = require("express-handlebars");
 const flash = require("connect-flash");
 const session = require("express-session");
+const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
@@ -14,7 +15,7 @@ const passport = require("passport");
 const mongoStore = require("connect-mongo")(session);
 
 
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 
 // Database connections
@@ -35,6 +36,9 @@ app.engine(".hbs",expresshandlebars({
   })
 );
 app.set("view engine", ".hbs");
+
+// ===================method override middleware==================
+app.use(methodOverride("newMethod"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -66,6 +70,8 @@ app.use((req, res, next) => {
   res.locals.session = req.session;
   next();
 });
+
+
 
 // Route grouping
 const defaultRoutes = require("./routes/defaultRoutes");

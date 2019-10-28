@@ -1,0 +1,57 @@
+<div class="panel-header panel-header-sm">
+</div>
+
+<div class="table-responsive">
+    <div class="container ">
+        <div class="alert alert-secondary text-center">
+            <h1 style="color:#000"><strong>All Exeat Requests</strong></h1>
+        </div>
+
+
+        <table class="table table-bordered table-responsive" style="margin-top:40px; ">
+            <thead class="bg-dark text-center">
+                <tr class="text-white">
+                    {{!-- <th>id</th> --}}
+                    <th>Date</th>
+                    <th>FullName</th>
+                    <th>Email</th>
+                    <th>Intern ID</th>
+                    <th>From Date</th>
+                    <th>To Date</th>
+                    <th>Message</th>
+                    <th>Approved</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+
+
+                {{#each exeat}}
+                <tr>
+                    {{!-- <td>{{id}}</td> --}}
+                    <td>{{date}}</td>
+                    <td>{{fullName}}</td>
+                    <td>{{email}}</td>
+                    <td>{{internId}}</td>
+                    <td>{{fromDate}}</td>
+                    <td>{{toDate}}</td>
+                    <td>{{message}}</td>
+                    <td>{{isApproved}}</td>
+                    <td class="d-flex">
+                        <a href="/admin/approveinternExeat/{{_id}}"
+                            class="btn btn-sm btn-success mr-2">Approve</a><br>
+
+                            <a href="/admin/declineinternExeat/{{_id}}" class="btn btn-sm btn-warning mr-2">Decline</a><br>
+
+                        {{!-- <a href="/admin/delete/{{_id}}" class="btn btn-sm btn-danger mr-2">Delete</a> --}}
+
+                        <form action="/admin/deleteinternExeat/{{id}}?newMethod=DELETE" method="post">
+                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

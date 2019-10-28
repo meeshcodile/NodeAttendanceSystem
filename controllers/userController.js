@@ -4,6 +4,7 @@ const mailer = require('../misc/mailer')
 const projectTopics = require('../models/topic')
 const InternSignIn = require('../models/internsSignIn')
 const InternSignOut = require('../models/internSignOut')
+const internExeat = require('../models/internRequest')
 
 
 
@@ -171,6 +172,29 @@ module.exports = {
         req.logout()
         req.flash('success', 'see you later')
         res.redirect('/')
+    },
+    internExeatPost:(req, res)=>{
+        const id = req.params.id
+        console.log(id)
+        User.findById(id).then(intern => {
+            let newExeat = new internExeat ({
+                message: req.body.message,
+                fromDate: req.body.fromDate,
+                toDate:req.body.toDate,
+                fullName: intern.firstName + ' ' + intern.lastName,
+                email: intern.email,
+                internId: intern.internId
+            })
+            newExeat.save().then(newExeat => {
+                console.log('Appointment savedd successfully', newExeat)
+                req.flash('success', 'Your Exeat has been placed please await further instructions')
+                res.redirect('back')
+            }).catch(err => {
+                console.log(err)
+                req.flash('error', 'Something Went Wrong Please Try Again')
+                return res.redirect('back')
+            })
+        })
     }
 
 

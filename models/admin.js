@@ -9,6 +9,10 @@ const adminSchema = new Schema({
         type:String,
         required:true
     },
+    profilePicture: {
+        type: String,
+        default: 'https://res.cloudinary.com/dzl4he0xn/image/upload/v1571834880/sample.jpg'
+    },
     lastName:{
         type:String,
         required:true
