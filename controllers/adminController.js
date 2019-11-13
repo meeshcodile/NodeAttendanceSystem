@@ -2,6 +2,7 @@ const InternSignIn = require("../models/internsSignIn");
 const InternSignOut = require("../models/internSignOut");
 const Admin = require("../models/admin");
 const User = require("../models/user");
+const projectTopics = require('../models/topic')
 const internExeat = require('../models/internRequest')
 const mailer = require('../misc/mailer')
 module.exports = {
@@ -199,5 +200,22 @@ module.exports = {
         console.log(err)
       })
   },
+  // addTopicPost: async (req, res) => {
+  //   let saver = req.body
+  //   console.log(saver)
+  //   let id = req.params.id
+  //   console.log(id)
+  //   await Admin.findById(id).then(user => {
+  //     let topic = new projectTopics({
+  //       projectTopic: req.body.projectTopic
+  //     })
+  //     topic.save().then(saver => {
+  //       console.log('saved')
+  //       req.flash('success','Topic Added successfully')
+  //       res.redirect('back')
+  //     })
+  //   })
+  // },
+
 };
 

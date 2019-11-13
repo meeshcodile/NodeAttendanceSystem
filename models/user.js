@@ -30,11 +30,6 @@ const userSchema = new Schema({
        type:String,
         default:'https://res.cloudinary.com/dzl4he0xn/image/upload/v1571834880/sample.jpg'
    },
-    projectTopic:{
-        type:String,
-        default:'default'
-        // required:false
-    },
    email:{
        type:String,
        required:true
@@ -62,7 +57,12 @@ const userSchema = new Schema({
    internId:{
        type:String,
        required:true
-   }
+   },
+   topics: [{
+            type:Schema.Types.ObjectId,
+            ref:'projectTopic'
+   }]
+
 })
 
 userSchema.plugin(passportLocalMongoose);

@@ -13,6 +13,7 @@ const path = require('path')
 // const isIntern = auth.isIntern
 
 
+
 // ==================configuring multer=============
 var storage = multer.diskStorage({
     filename: function (req, file, callback) {
@@ -52,29 +53,36 @@ cloudinary.config({
 
 })
 
-
+// ================dashboard get route=======================
 router.route('/dashboard')
     .get(isIntern,userController.dashboardGet)
-
+// ==================sign in routeeeeee====================
 router.route('/signIn/:id')
     .post(isIntern,userController.signInPost)
-
+// ========================signout route===================
 router.route('/signOut/:id')
     .post(isIntern, userController.signOutPost)
 
+
+router.route('/blogPost/:id')
+    .post(isIntern, userController.blogPost)
+// ========================================register routr=====================
 router.route('/register')
     .get(userController.registerGet)
     .post(userController.registerPost)
 
 router.route('/logout')
     .get(userController.logoutGet)
-
-router.route('/topicUpload/:id')
-    .post(isIntern,userController.topicUploadPost)
-
+// ===================intern exeatrout==================
 router.route('/internExeat/:id')
     .post(isIntern,userController.internExeatPost)
+// router.route('/addTopic')
+//     .get(isIntern,userController.addTopicGet)
 
+router.route('/addTopic/:id')
+    // .get(isIntern,userController.addTopicGet)
+    .post(isIntern,userController.addTopicPost)
+// ================uploading profile picture route================
 router.route('/uploadImage/:id')
     .post(isIntern,upload.single('profilePic'), function (req, res, next) {
             console.log(req.body)

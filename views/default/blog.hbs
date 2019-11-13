@@ -1,0 +1,41 @@
+{{!-- <div class="container"> --}}
+
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h1 class="my-4" style="text-align: center;">Nhub Foundation Interns Blog Post</h1>
+        {{#each blogpost}}
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <p class="card-text">{{blogPost}}</p>
+            </div>
+            <div class="card-footer text-muted">
+                Posted on {{CreationDate}} by {{fullName}}
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        
+        <li class="page-item"><a class="page-link" href="/blog?page=1">1</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=2">2</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=3">3</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=4">4</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=5">5</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=6">6</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=7">7</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=8">8</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=9">9</a></li>
+        <li class="page-item"><a class="page-link" href="/blog?page=10">10</a></li>
+
+
+        
+    </ul>
+</nav>
+

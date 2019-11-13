@@ -15,6 +15,10 @@ router.route("/")
 
 router.route('/login')
   .get(defaultController.loginGet)
+
+
+router.route('/blog')
+  .get(defaultController.blog)
   
 
 //======================defining the strategy to be used by the user==================

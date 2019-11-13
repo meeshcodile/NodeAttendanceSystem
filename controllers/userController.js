@@ -5,13 +5,15 @@ const projectTopics = require('../models/topic')
 const InternSignIn = require('../models/internsSignIn')
 const InternSignOut = require('../models/internSignOut')
 const internExeat = require('../models/internRequest')
-
+const blogPost = require('../models/blogpost')
 
 
 module.exports = {
     registerGet: (req, res) => {
         res.render('default/register')
     },
+
+    //===========================register post=============================
     registerPost:async(req, res,next)=>{
         try{
             
@@ -80,9 +82,16 @@ module.exports = {
             next (error)
         }
     },
-    dashboardGet:(req, res)=>{
-        let user = req.user;
-            res.render('default/profile', { layout: 'intern', user})
+
+    // ===================dashboard get============================
+    dashboardGet:async(req, res)=>{
+        let user = req.user; 
+        projectTopics.find().then(topic=>{
+            let fullName = user.firstName + ' ' + user.lastName
+            console.log(fullName)
+                res.render('default/profile', { layout: 'intern', user, topic: topic, fullName:fullName})            
+
+        })
     },
     // ========================================  attendance SIgnIn Post ======================================
     signInPost: (req, res) => {
@@ -92,6 +101,7 @@ module.exports = {
             if (user.isSignedIn === true) {
                 req.flash('error', 'You have signed in already')
                 res.redirect('back')
+                return
             }
             let newSignIn = new InternSignIn({
                 fullName: user.firstName + ' ' + user.lastName,
@@ -126,53 +136,14 @@ module.exports = {
             })
         })
     },
-    // https://res.cloudinary.com/dzl4he0xn/image/upload/v1571834880/sample.jpg
-    // topicUploadPost:async(req, res)=>{
-    //     const id =req.params.id
-    //     console.log(id)
-    //     await User.findById(id).then(async(topic) =>{
-    //         // const topics = req.body.projectTopic
-    //         // console.log(topics)
-    //         await topic.save({projectTopic:req.body.projectTopic}).then(topic=>{
-    //              console.log('topic saved')
-    //              req.flash('success', 'topic added successfully')
-    //              console.log(topic)
-    //              res.redirect('back')
-    //         }).catch(err=>{
-    //             console.log(err)
-    //             req.flash('error','something went wrong')
-    //             res.redirect('back')
-    //         })
-    //     })
-    // },
-    topicUploadPost: async (req, res) => {
-        const id = req.params.id
-        console.log(id)
-        const projectTopic = req.body.projectTopic
-        var myquery = { projectTopic: 'fuck you'};
-        var newvalues = {projectTopic: projectTopic};
-        await User.findById(id).then(async (topic) => {
-            await User.updateOne(myquery, newvalues).then((user)=>{
-                req.flash('success','topic added successfully')
-                res.redirect('back')
-                console.log('update')
-            }).catch((err)=>{
-                req.flash('errror','something went wrong')
-                res.redirect('back')
-                console.log(err)
-            })
-            
-        }).catch((err)=>{
-            req.flash('errror','something went wrong')
-                res.redirect('back')
-            console.log(err)
-        })
-    },
+    // =====================logout get=============================
     logoutGet: (req, res) => {
         req.logout()
         req.flash('success', 'see you later')
         res.redirect('/')
     },
+
+    // ============intern exeatpost ====================
     internExeatPost:(req, res)=>{
         const id = req.params.id
         console.log(id)
@@ -195,7 +166,42 @@ module.exports = {
                 return res.redirect('back')
             })
         })
+    },
+    // ==================adding topic to database post============================
+    
+    addTopicPost:async(req, res, next)=>{
+        const id = req.params.id
+        const newTopic = new projectTopics(req.body)
+        console.log('newTopic', newTopic)
+        const user =await User.findById(id).populate('topics')
+        // console.log(topic)
+        newTopic.projectTopic= user
+        await newTopic.save()
+        user.topics.push(newTopic)
+        await user.save()
+        console.log(newTopic)
+    },
+
+
+    // ===================blogPost route=========================
+    blogPost:async(req, res)=>{
+        const id = req.params.id
+        await User.findById(id).then((blogpost)=>{
+            let post = new blogPost({
+                blogPost:req.body.blogPost,
+                CreationDate:Date.now(),
+                fullName:blogpost.firstName +' '+ blogpost.lastName
+            })
+    
+            post.save().then((blogpost)=>{
+                console.log(blogpost)
+                req.flash('success', 'post successfully created')
+                res.redirect('/user/dashboard')
+            })
+        })
     }
 
 
 }
+
+

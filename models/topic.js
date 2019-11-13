@@ -2,9 +2,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const newTopicSchema = new Schema({
-    projectTopic :{
-        type:String,
-        required:true
+    // group:{
+    //     type:String,
+    //     required:true
+    // },
+    projectTopic:{
+        type:Schema.Types.ObjectId,
+        ref:'user'
     }
 })
 

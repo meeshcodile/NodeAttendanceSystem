@@ -73,31 +73,79 @@
     const myButton2 = document.getElementById('btnControl2')
 
 
-    if (hours >= 8 && hours <= 10) myButton.disabled = false, myButton.style.cursor = 'pointer'
+    if (hours >= 8 && hours <= 9) myButton.disabled = false, myButton.style.cursor = 'pointer'
     else myButton.disabled = true, myButton.innerHTML = 'Button Unavailable'
 
 
     if (hours >= 12 && hours <= 18) myButton2.disabled = false, myButton2.style.cursor = 'pointer'
-    else myButton2.disabled = true, myButton2.innerHTML = 'Button Unavailable'
+   else myButton2.disabled = true, myButton2.innerHTML = 'Button Unavailable'
 </script>
 
-{{!-- <script>
-    var lat = 9.8790;
-    var long = 8.8745
+<script>
+ /* let lattitude1 = 9.056256
+  let lattitude2 = 10.52016639999
+  const meesh = document.getElementsByClassName('meesh')
+  
 
-    navigator.geolocation.getCurrentPosition(function user(position) {
-        var latitude = position.coords.latitude;
-        var longitude = position.coords.longitude;
+  navigator.geolocation.getCurrentPosition(function(position){
+      let latt1 = position.coords.latitude
+      let latt2 = position.coords.latitude
 
-        console.log(long)
-    })
+        if(latt1 <= lattitude1 && latt2 >= lattitude2){
+            meesh.disabled =false,
+            console.log('matching successfully')
+            console.log(latt1)
+        }else{
+            meesh.disabled= true;
+            meesh.innerHTML = 'Button Unavailable'
+            console.log('matching failed')
+        }
+  })
+  */
 
 
-</script> --}}
+  function between(latitude, min, max){
+      return latitude>=min && latitude<=max
+  }
+let latt= 9.0578944
+let lngg= 7.448985599999999
+ navigator.geolocation.getCurrentPosition(function (position){
+      let lat = position.coords.latitude;
+      let lat2 = position.coords.latitude;
+
+     //let lng = position.coords.longitude
+
+     console.log(lat)
+     
+     console.log(latt)
 
 
-{{!--latt= 9.8789847
-long=8.8743053 --}}
+     if (lat <= latt && lat2 >= latt) {
+         
+             console.log('matching successfully')
+         console.log(lat)
+         console.log(lngg)
+     } else {
+        console.log(lat)
+         console.log(lngg)
+         console.log('matching failed')
+     }
+
+
+      //if (between(lat, 9.87842, 9.879160)) {
+       //   console.log('matching good')
+      //}
+     // else {
+          //console.log('matching failed')
+          //console.log(lat)
+         // console.log(lng)
+
+      //}
+  })
+
+ 
+
+</script> 
 
 <script>
     var d = new Date();
@@ -107,7 +155,7 @@ long=8.8743053 --}}
     $(document).ready(function () {
         setTimeout(function () {
             $('.auto-hide').slideUp(300);
-        }, 1000);
+        }, 7000);
     });
 </script>
 

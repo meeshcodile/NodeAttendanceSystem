@@ -88,6 +88,11 @@ router.route('/allinterns')
 router.route('/logout')
     .get(isAdmin,adminController.logoutGet)
 
+// ==================Adding the Topics=======================
+// router.route('/addTopic/:id')
+//     .post(isAdmin, adminController.addTopicPost)
+
+
 //=======================image uplaod route===================
 router.route('/uploadImage/:id')
     .post(isAdmin,upload.single('profilePic'), function (req, res, next) {
